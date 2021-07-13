@@ -6,7 +6,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Code to implement models from the Space and space-time modeling using process convolutions paper.
+## Code to implement models from Higdon D. (2002) Space and Space-Time Modeling using Process Convolutions.
 
 ## Basic Model
 ```{r, include=TRUE, eval=TRUE, echo=FALSE, fig.height = 8, fig.width = 10, fig.align = "center"}

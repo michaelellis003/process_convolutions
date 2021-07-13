@@ -1,5 +1,5 @@
 
-## Code to implement models from the Space and space-time modeling using process convolutions paper.
+## Code to implement models from Higdon D. (2002) Space and Space-Time Modeling using Process Convolutions.
 
 ## Basic Model
 
