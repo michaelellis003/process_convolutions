@@ -1,0 +1,27 @@
+---
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Code to implement models from the Space and space-time modeling using process convolutions paper.
+
+## Basic Model
+```{r, include=TRUE, eval=TRUE, echo=FALSE, fig.height = 8, fig.width = 10, fig.align = "center"}
+source("basic_example.R")
+basic_model()
+```
+
+## Multiresolution Model
+```{r, include=TRUE, eval=TRUE, echo=FALSE, fig.height = 8, fig.width = 10, fig.align = "center"}
+source("MR_example.R")
+MR_model()
+```
+
+## Multiresolution MCMC Code
+```{r, include=TRUE, eval=TRUE, echo=FALSE}
+library(tidyverse)
+read_lines("mcmc_mr.R")
+```
