@@ -1,5 +1,5 @@
 mcmc_mr <- function(y, x, 
-                    knots, stddev, 
+                    knots, radius = rad, form = "gaussian", 
                     n_mcmc = 5000, burnin = 2500, n_message = 500) {
     
     N <- length(y)
@@ -25,9 +25,9 @@ mcmc_mr <- function(y, x,
     alpha2 <- rnorm(m2, 0, 1)
     alpha3 <- rnorm(m3, 0, 1)
     
-    Z1 <- make_kernel(x, knots$knots1, stddev[1])
-    Z2 <- make_kernel(x, knots$knots2, stddev[2])
-    Z3 <- make_kernel(x, knots$knots3, stddev[3])
+    Z1 <- make_basis(x, knots$knots1, radius[1], form = form)
+    Z2 <- make_basis(x, knots$knots2, radius[2], form = form)
+    Z3 <- make_basis(x, knots$knots3, radius[3], form = form)
     
     ## precalculate values
     tZZ1 <- t(Z1) %*% Z1

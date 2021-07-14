@@ -2,7 +2,7 @@ MR_model <- function() {
     library(ggplot2)
     library(gridExtra)
     library(latex2exp)
-    source("make_kernel.R")
+    source("make_basis.R")
     source("mcmc_mr.R")
     
     ## set ggplot theme
@@ -24,7 +24,7 @@ MR_model <- function() {
         knots3 = knots3
     )
     
-    sigma2_epsilon <- 0.5^2
+    sigma2_epsilon <- 0.1^2
     sigma2_alpha1 <- 1
     sigma2_alpha2 <- 1
     sigma2_alpha3 <- 1
@@ -33,10 +33,10 @@ MR_model <- function() {
     alpha2 <- rnorm(n_knots2, 0, sqrt(sigma2_alpha2))
     alpha3 <- rnorm(n_knots3, 0, sqrt(sigma2_alpha3))
     
-    stddev <- c(1, 0.5^2, 0.25^2)
-    Z1 <- make_kernel(x, knots1, stddev = sqrt(stddev[1]))
-    Z2 <- make_kernel(x, knots2, stddev = sqrt(stddev[2]))
-    Z3 <- make_kernel(x, knots3, stddev = sqrt(stddev[3]))
+    rad <- c(0.5, 0.2, 0.05)
+    Z1 <- make_basis(x, knots1, rad[1], form = "gaussian")
+    Z2 <- make_basis(x, knots2, rad[2], form = "gaussian")
+    Z3 <- make_basis(x, knots3, rad[3], form = "gaussian")
     
     z <- Z1 %*% alpha1 + Z2 %*% alpha2 + Z3 %*% alpha3
     y <- z + rnorm(N, 0, sqrt(sigma2_epsilon))
@@ -55,7 +55,7 @@ MR_model <- function() {
     n_mcmc <- 10000
     burnin <- 5000
     mr_fit <- mcmc_mr(y, x, 
-                      knots_mr, stddev=stddev, 
+                      knots_mr, radius = rad, form = "gaussian",
                       n_mcmc = n_mcmc, burnin = burnin, n_message = 500)
     
     

@@ -1,5 +1,5 @@
 mcmc_basic <- function(y, x, 
-                 knots, stddev, 
+                 knots, radius, form = "gaussian",
                  n_mcmc = 5000, burnin = 2500, n_message = 500) {
     
     N <- length(y)
@@ -15,7 +15,7 @@ mcmc_basic <- function(y, x,
     sigma2_epsilon <- runif(1, 1, 5)
     sigma2_alpha <- runif(1, 1, 5)
     alpha <- rnorm(m)
-    Z <- make_kernel(x, knots, stddev)
+    Z <- make_basis(x, knots, radius, form = "gaussian")
     
     ## precalculate values
     tZZ <- t(Z) %*% Z

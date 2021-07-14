@@ -2,7 +2,7 @@ basic_model <- function() {
     library(ggplot2)
     library(gridExtra)
     library(latex2exp)
-    source("make_kernel.R")
+    source("make_basis.R")
     source("mcmc_basic.R")
     
     ## set ggplot theme
@@ -18,7 +18,7 @@ basic_model <- function() {
     sigma2_alpha <- 1
     alpha <- rnorm(n_knots, 0, sqrt(sigma2_alpha))
     
-    Z <- make_kernel(x, knots, stddev = 0.25)
+    Z <- make_basis(x, knots, radius = 0.1, form = "gaussian")
     
     y <- Z %*% alpha + rnorm(N, 0, sqrt(sigma2_epsilon))
     
@@ -26,7 +26,7 @@ basic_model <- function() {
     n_mcmc <- 5000
     burnin <- 2500
     basic_fit <- mcmc_basic(y, x, 
-                            knots, stddev=0.25, 
+                            knots, radius = 0.1, form = "gaussian",
                             n_mcmc = n_mcmc, burnin = burnin, n_message = 500)
     
     plot_mcmc <- data.frame(

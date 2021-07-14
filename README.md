@@ -24,7 +24,7 @@
     ## x dplyr::lag()     masks stats::lag()
 
     ##   [1] "mcmc_mr <- function(y, x, "                                                           
-    ##   [2] "                    knots, stddev, "                                                  
+    ##   [2] "                    knots, radius = rad, form = \"gaussian\", "                       
     ##   [3] "                    n_mcmc = 5000, burnin = 2500, n_message = 500) {"                 
     ##   [4] "    "                                                                                 
     ##   [5] "    N <- length(y)"                                                                   
@@ -50,9 +50,9 @@
     ##  [25] "    alpha2 <- rnorm(m2, 0, 1)"                                                        
     ##  [26] "    alpha3 <- rnorm(m3, 0, 1)"                                                        
     ##  [27] "    "                                                                                 
-    ##  [28] "    Z1 <- make_kernel(x, knots$knots1, stddev[1])"                                    
-    ##  [29] "    Z2 <- make_kernel(x, knots$knots2, stddev[2])"                                    
-    ##  [30] "    Z3 <- make_kernel(x, knots$knots3, stddev[3])"                                    
+    ##  [28] "    Z1 <- make_basis(x, knots$knots1, radius[1], form = form)"                        
+    ##  [29] "    Z2 <- make_basis(x, knots$knots2, radius[2], form = form)"                        
+    ##  [30] "    Z3 <- make_basis(x, knots$knots3, radius[3], form = form)"                        
     ##  [31] "    "                                                                                 
     ##  [32] "    ## precalculate values"                                                           
     ##  [33] "    tZZ1 <- t(Z1) %*% Z1"                                                             
