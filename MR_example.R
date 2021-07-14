@@ -1,5 +1,6 @@
 MR_model <- function() {
     library(ggplot2)
+    library(gridExtra)
     library(latex2exp)
     source("make_kernel.R")
     source("mcmc_mr.R")
@@ -23,16 +24,16 @@ MR_model <- function() {
         knots3 = knots3
     )
     
-    sigma2_epsilon <- 0.1^2
-    sigma2_alpha1 <- 5
+    sigma2_epsilon <- 0.5^2
+    sigma2_alpha1 <- 1
     sigma2_alpha2 <- 1
-    sigma2_alpha3 <- 0.5
+    sigma2_alpha3 <- 1
     
     alpha1 <- rnorm(n_knots1, 0, sqrt(sigma2_alpha1))
     alpha2 <- rnorm(n_knots2, 0, sqrt(sigma2_alpha2))
     alpha3 <- rnorm(n_knots3, 0, sqrt(sigma2_alpha3))
     
-    stddev <- c(2^2, 1, 0.5^2)
+    stddev <- c(1, 0.5^2, 0.25^2)
     Z1 <- make_kernel(x, knots1, stddev = sqrt(stddev[1]))
     Z2 <- make_kernel(x, knots2, stddev = sqrt(stddev[2]))
     Z3 <- make_kernel(x, knots3, stddev = sqrt(stddev[3]))

@@ -21,9 +21,9 @@ mcmc_mr <- function(y, x,
     sigma2_alpha2 <- runif(1, 1, 5)
     sigma2_alpha3 <- runif(1, 1, 5)
     
-    alpha1 <- rnorm(m1, 0, stddev[1])
-    alpha2 <- rnorm(m2, 0, stddev[2])
-    alpha3 <- rnorm(m3, 0, stddev[3])
+    alpha1 <- rnorm(m1, 0, 1)
+    alpha2 <- rnorm(m2, 0, 1)
+    alpha3 <- rnorm(m3, 0, 1)
     
     Z1 <- make_kernel(x, knots$knots1, stddev[1])
     Z2 <- make_kernel(x, knots$knots2, stddev[2])
